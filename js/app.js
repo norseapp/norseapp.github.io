@@ -6,4 +6,24 @@
 
 //http://docs.angularjs.org/guide/expression
 
-var app = angular.module('store', []);
+var myapp = angular.module('myapp', ['ngRoute']);
+
+myapp.controller(
+	'AppCtrl', 
+	[
+		'$scope', 
+		'$log',
+		function($scope, $log) {
+			$scope.handleMyButton = function(){
+				$log.log('Angular Button clicked');
+			}
+		}
+	]
+);
+
+myapp.config(specifyRoutes);
+function specifyRoutes ($routeProvider) {
+	$routeProvider
+		.when('#/login', {templateUrl: 'login.html' })
+		.when('#/signup', {templateUrl: 'signup.html' });
+}
