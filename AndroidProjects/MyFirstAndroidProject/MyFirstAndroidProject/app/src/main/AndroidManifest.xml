@@ -1,0 +1,70 @@
+<<<<<<< Original
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mycompany.myfirstandroidproject" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MyFirstActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- All todos Activity -->
+        <activity
+            android:name=".AllTodosActivity"
+            android:label="All Todos" >
+        </activity>
+
+        <!-- Add todos Activity -->
+        <activity
+            android:name=".NewTodoActivity"
+            android:label="Add New Todo" >
+        </activity>
+
+        <!-- Edit todos Activity -->
+        <activity
+            android:name=".EditTodoActivity"
+            android:label="Edit Todo" >
+        </activity>
+        <activity
+            android:name=".AllTodoActivity"
+            android:label="@string/title_activity_all_todo"
+            android:parentActivityName=".MainScreenApp" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mycompany.myfirstandroidproject.MainScreenApp" />
+        </activity>
+    </application>
+
+    <!-- Internet Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>
+
+=======
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <application>
+        <activity android:name="mycompany.myfirstandroidproject.NewTodoActivity"
+            android:label="@string/title_activity_new_todo"
+            android:parentActivityName="mycompany.myfirstandroidproject.MainScreenApp">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="mycompany.myfirstandroidproject.MainScreenApp" />
+        </activity>
+    </application>
+
+</manifest>
+>>>>>>> Added

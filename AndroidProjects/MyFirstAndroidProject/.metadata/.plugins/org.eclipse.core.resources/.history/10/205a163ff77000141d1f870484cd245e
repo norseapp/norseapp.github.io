@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyFirstAndroidProject</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Add_New_Todo">Add New Todo</string>
+    <string name="title_activity_all_todo">AllTodoActivity</string>
+    <string name="title_activity_new_todo">NewTodoActivity</string>
+    <string name="due_Time">Due Time</string>
+    <string name="due_Date">Due Date</string>
+    <string name="Todo_Name">Todo Name</string>
+    <string name="Location">Location</string>
+    <string name="Create_Todo">Create Todo</string>
+    <string name="title_activity_edit_todo">EditTodoActivity</string>
+    <string name="Save_Changes">Save Todo</string>
+    <string name="Delete">Delete Todo</string>
+    <string name="viewTodo">View List</string>
+    <string name="title_activity_login">Login</string>
+
+</resources>
