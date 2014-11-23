@@ -1,0 +1,30 @@
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#00BFFF">
+
+
+    <Button
+        style="@style/AppTheme"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Add_New_Todo"
+        android:id="@+id/AddButton"
+        android:clickable="true"
+        android:enabled="true"
+        android:fontFamily="Serif"
+        android:fontStyle="bold"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:cursorVisible="false"
+        android:drawableBottom="#ff68deff"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:drawableLeft="@android:color/background_dark"
+        android:layout_margin="50dp"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:textColor="#000000"
+        android:background="#F8E0EC"/>
+</FrameLayout>

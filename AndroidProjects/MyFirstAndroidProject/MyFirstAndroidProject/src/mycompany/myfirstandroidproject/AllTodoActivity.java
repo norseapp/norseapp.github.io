@@ -1,0 +1,195 @@
+package mycompany.myfirstandroidproject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.ListActivity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+
+public class AllTodoActivity extends ListActivity {
+    // Progress Dialog
+    private ProgressDialog pDialog;
+    // Creating JSON Parser object
+    JSONParser jParser = new JSONParser();
+    ArrayList<HashMap<String, String>> todoList;
+     // url to get all products list
+     private static String url_all_todos = "http://10.24.10.203:80/android_connect/get_all_todos.php";
+    // JSON Node names
+     private static final String TAG_SUCCESS = "success";
+     private static final String TAG_TODO_LIST = "todo_list";
+     private static final String TAG_TID = "tid";
+     private static final String TAG_NAME = "name";
+  
+     // products JSONArray
+     JSONArray todo_list = null;
+  
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.all_todo);
+  
+         // Hashmap for ListView
+         todoList = new ArrayList<HashMap<String, String>>();
+  
+         // Loading products in Background Thread
+         new LoadAllTodos().execute();
+  
+         // Get listview
+         ListView lv = getListView();
+  
+         // on seleting single product
+         // launching Edit Product Screen
+         lv.setOnItemClickListener(new OnItemClickListener() {
+  
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view,
+                     int position, long id) {
+                 // getting values from selected ListItem
+                 String tid = ((TextView) view.findViewById(R.id.tid)).getText()
+                         .toString();
+  
+                 // Starting new intent
+                 Intent in = new Intent(getApplicationContext(),
+                         EditTodoActivity.class);
+                 // sending pid to next activity
+                 in.putExtra(TAG_TID, tid);
+  
+                 // starting new activity and expecting some response back
+                 startActivityForResult(in, 100);
+             }
+         });
+  
+     }
+  
+     // Response from Edit Product Activity
+     @Override
+     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+         super.onActivityResult(requestCode, resultCode, data);
+         // if result code 100
+         if (resultCode == 100) {
+             // if result code 100 is received
+             // means user edited/deleted product
+             // reload this screen again
+             Intent intent = getIntent();
+             finish();
+             startActivity(intent);
+         }
+  
+     }
+  
+     /**
+      * Background Async Task to Load all product by making HTTP Request
+      * */
+     class LoadAllTodos extends AsyncTask<String, String, String> {
+  
+         /**
+          * Before starting background thread Show Progress Dialog
+          * */
+         @Override
+         protected void onPreExecute() {
+             super.onPreExecute();
+             pDialog = new ProgressDialog(AllTodoActivity.this);
+             pDialog.setMessage("Loading todos. Please wait...");
+             pDialog.setIndeterminate(false);
+             pDialog.setCancelable(false);
+             pDialog.show();
+         }
+  
+         /**
+          * getting All products from url
+          * */
+         protected String doInBackground(String... args) {
+             // Building Parameters
+             List<NameValuePair> params = new ArrayList<NameValuePair>();
+             // getting JSON string from URL
+             JSONObject json = jParser.makeHttpRequest(url_all_todos, "GET", params);
+  
+             // Check your log cat for JSON reponse
+             Log.d("All Todos: ", json.toString());
+  
+             try {
+                 // Checking for SUCCESS TAG
+                 int success = json.getInt(TAG_SUCCESS);
+  
+                 if (success == 1) {
+                     // products found
+                     // Getting Array of Products
+                     todo_list = json.getJSONArray(TAG_TODO_LIST);
+  
+                     // looping through All Products
+                     for (int i = 0; i < todo_list.length(); i++) {
+                         JSONObject c = todo_list.getJSONObject(i);
+  
+                         // Storing each json item in variable
+                         String id = c.getString(TAG_TID);
+                         String name = c.getString(TAG_NAME);
+  
+                         // creating new HashMap
+                         HashMap<String, String> map = new HashMap<String, String>();
+  
+                         // adding each child node to HashMap key => value
+                         map.put(TAG_TID, id);
+                         map.put(TAG_NAME, name);
+  
+                         // adding HashList to ArrayList
+                         todoList.add(map);
+                     }
+                 } else {
+                     // no products found
+                     // Launch Add New product Activity
+                     Intent i = new Intent(getApplicationContext(),
+                             NewTodoActivity.class);
+                     // Closing all previous activities
+                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                     startActivity(i);
+                 }
+             } catch (JSONException e) {
+                 e.printStackTrace();
+             }
+  
+             return null;
+         }
+  
+         /**
+          * After completing background task Dismiss the progress dialog
+          * **/
+         protected void onPostExecute(String file_url) {
+             // dismiss the dialog after getting all products
+             pDialog.dismiss();
+             // updating UI from Background Thread
+             runOnUiThread(new Runnable() {
+                 public void run() {
+                     /**
+                      * Updating parsed JSON data into ListView
+                      * */
+                     ListAdapter adapter = new SimpleAdapter(
+                             AllTodoActivity.this, todoList,
+                             R.layout.list_item, new String[] { TAG_TID,
+                                     TAG_NAME},
+                             new int[] { R.id.tid, R.id.name });
+                     // updating listview
+                     setListAdapter(adapter);
+                 }
+             });
+  
+         }
+  
+     }
+ }
