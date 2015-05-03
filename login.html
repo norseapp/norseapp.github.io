@@ -28,6 +28,10 @@
     <script src="app.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 
+    <!--JSON files-->
+    <script src="JSONParser.java"></script>
+    <script src="RegisterActivity.java"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,20 +55,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="index.html">Nameless</a>
+                <a class="navbar-brand page-scroll" href="index.html">Yodel</a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    <li>
-                        <a class="btn" href="signup.html">Sign Up</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
@@ -74,39 +66,36 @@
     </div>
 
 
-
     <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Login</h2>
-                    <h3 class="section-subheading text-muted">Check out your purchases log from any device.</h3>
+                    <h3 class="section-subheading text-muted">Check out your account from any device.</h3>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" novalidate>
+                <div>
+                    <script src="JSONParser.java"></script>
+                    <script src="RegisterActivity.java"></script>
+
+                    <form action="http://10.24.10.203/android_connect/request_Check.php" method="get" tag="login">
+
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <input type="email" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <p class="help-block text-danger"></p>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Your Password *" id="password" required data-validation-required-message="Please enter your password.">
                                     <p class="help-block text-danger"></p>
                                 </div>
-                                <div class="form-group">
-                                    <iput type="password" class="form-control" placeholder="Your Password *" id="password" required data-validation-required-message="Please enter your password.">
                                 </div>
-<!--
+                            </div>
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
                                 <button type="submit" class="btn btn-xl">Login</button>
-                            </div>
--->
-                            <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center"></div>
-                                <button>
-                                <a href="UserPage/index2.html">Login</a>
-                            </button>
                             </div>
                         </div>
                     </form>
@@ -119,25 +108,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; NAMELESS 2014</span>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline quicklinks">
-                        <li><a href="#">Privacy Policy</a>
-                        </li>
-                        <li><a href="#">Terms of Use</a>
-                        </li>
-                    </ul>
+                    <span class="copyright">Copyright &copy; YODEL 2015</span>
                 </div>
             </div>
         </div>
@@ -157,8 +128,8 @@
     <script src="js/cbpAnimatedHeader.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <!--<script src="js/jqBootstrapValidation.js"></script>-->
+    <!--<script src="http://10.24.10.203/android_connect/request_Check.php"></script>-->
 
     <!-- Custom Theme JavaScript -->
     <script src="js/agency.js"></script>
