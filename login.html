@@ -76,18 +76,18 @@
             </div>
             <div class="row">
                 <div>
-                    <script src="JSONParser.java"></script>
-                    <script src="RegisterActivity.java"></script>
+                    <script src="JSONParser.jsp"></script>
 
-                    <form action="http://10.24.10.203/android_connect/request_Check.php" method="get" tag="login">
+                    <!--<form action="JSONParser.jsp">-->
+                    <form action="http://10.24.10.203/android_connect/request_Check.php" method="POST">
 
                         <div class="row">
                             <div class="col-md-6 text-center">
                                 <div class="form-group">
-                                    <input type="email" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <input type="email" placeholder="Your Email *" id="email" name="email" required data-validation-required-message="Please enter your email address.">
                                     <p class="help-block text-danger"></p>
                                 <div class="form-group">
-                                    <input type="text" placeholder="Your Password *" id="password" required data-validation-required-message="Please enter your password.">
+                                    <input type="text" placeholder="Your Password *" id="password" name="password" required data-validation-required-message="Please enter your password.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 </div>
